@@ -9,5 +9,5 @@ class ResConfigSettings(models.TransientModel):
 
     inventory_availability = fields.Selection(selection_add=[
         ('always_no_lock',
-         'Show inventory on website and allow sales if not enough stock'),
+         'Show inventory on website, allow sales if not enough stock and add a message if stock below threshold'),
     ])
