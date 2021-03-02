@@ -13,7 +13,7 @@
     'application': False,
     'installable': True,
     'depends': [
-        'website_sale_stock',
+        'website_sale_stock', 'stock_available',
     ],
     'data': [
         'views/assets.xml',

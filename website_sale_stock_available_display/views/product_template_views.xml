@@ -3,7 +3,7 @@
      License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
 <odoo>
 
-    <record id="product_template_form_view" model="ir.ui.view">
+    <record id="product_template_form_view_inherit_website_sale_stock" model="ir.ui.view">
         <field name="model">product.template</field>
         <field name="inherit_id" ref="website_sale_stock.product_template_form_view_inherit_website_sale_stock" />
         <field name="arch" type="xml">
@@ -26,7 +26,9 @@
         <field name="model">product.product</field>
         <field name="inherit_id" ref="stock_available.product_normal_form_view" />
         <field name="arch" type="xml">
-            <xpath expr="//field[@name='potential_qty']/../../.." position="replace"/>
+            <xpath expr="//field[@name='potential_qty']/../../.." position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
         </field>
     </record>
 
@@ -35,7 +37,9 @@
         <field name="model">product.template</field>
         <field name="inherit_id" ref="stock_available.view_stock_available_form" />
         <field name="arch" type="xml">
-            <xpath expr="//field[@name='potential_qty']/../../.." position="replace"/>
+            <xpath expr="//field[@name='potential_qty']/../../.." position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
         </field>
     </record>
 
