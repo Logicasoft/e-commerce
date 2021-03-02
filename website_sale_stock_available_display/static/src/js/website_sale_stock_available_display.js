@@ -3,9 +3,9 @@ odoo.define('website_sale_stock_available_display.load', function (require) {
     var ajax = require('web.ajax');
     var core = require('web.core');
     var ProductConfiguratorMixin = require(
-        'website_sale_stock.ProductConfiguratorMixin');
+        'website_sale_stock.VariantMixin');
     var QWeb = core.qweb;
-    var load_xml = ajax.loadXML(
+    var xml_load = ajax.loadXML(
         '/website_sale_stock_available_display/static/src/xml/website_sale_stock_product_availability.xml',
          QWeb
     );

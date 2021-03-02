@@ -9,8 +9,33 @@
         <field name="arch" type="xml">
             <field name="custom_message" position="after">
                 <field name="custom_message"
-                       attrs="{'invisible': ['|', ('type', 'in', ['service', 'consu']), ('inventory_availability', '!=', 'always_no_lock')]}"/>
+                       attrs="{'invisible': [('inventory_availability', '!=', 'always_no_lock')]}"/>
             </field>
+            <xpath expr="//field[@name='available_threshold']" position="attributes">
+                <attribute name="attrs">{'invisible':
+                    [('inventory_availability', 'not in', ['threshold', 'always_no_lock'])],
+                    'required':
+                    [('inventory_availability', 'in', ['threshold','always_no_lock']),
+                    ('type', '=', 'product')]}</attribute>
+            </xpath>
+        </field>
+    </record>
+
+
+    <record id="product_template_form_view" model="ir.ui.view">
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="stock_available.product_normal_form_view" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='potential_qty']/../../.." position="replace"/>
+        </field>
+    </record>
+
+
+    <record id="view_stock_available_form" model="ir.ui.view">
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="stock_available.view_stock_available_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='potential_qty']/../../.." position="replace"/>
         </field>
     </record>
 
