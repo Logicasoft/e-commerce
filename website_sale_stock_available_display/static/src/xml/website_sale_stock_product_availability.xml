@@ -17,14 +17,9 @@
                             <t t-esc="virtual_available_formatted"/>
                             <t t-esc="uom_name"/>
                             available
-                            <div t-if="available_threshold > virtual_available">
+                            <div>
                                 <t t-esc="custom_message"/>
                             </div>
-                        </div>
-                        <div t-else="" t-attf-class="availability_message_#{product_template} text-success mt16">
-                            <t t-esc="virtual_available_formatted"/>
-                            <t t-esc="uom_name"/>
-                            available
                         </div>
                     </div>
                     <t t-if="inventory_availability == 'threshold'">
