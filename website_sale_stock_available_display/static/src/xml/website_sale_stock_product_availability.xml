@@ -16,17 +16,10 @@
                             <t t-esc="free_qty_formatted"/>
                             <t t-esc="uom_name"/>
                             available
-<<<<<<< HEAD
-                            <div>
-                                <t t-esc="custom_message"/>
-                            </div>
-                        </div>
-=======
                         </div>
                         <div>
                             <t t-esc="custom_message"/>
                         </div>
->>>>>>> [20040] Correction
                     </div>
                     <t t-if="inventory_availability == 'threshold'">
                         <div t-if="virtual_available lte available_threshold"
