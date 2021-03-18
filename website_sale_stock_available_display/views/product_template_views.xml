@@ -21,24 +21,24 @@
         </field>
     </record>
 
-
     <record id="product_template_form_view" model="ir.ui.view">
         <field name="model">product.product</field>
-        <field name="inherit_id" ref="stock_available.product_normal_form_view" />
+        <field name="inherit_id" ref="product.product_normal_form_view"/>
         <field name="arch" type="xml">
-            <xpath expr="//field[@name='potential_qty']/../../.." position="attributes">
-                <attribute name="invisible">1</attribute>
-            </xpath>
-        </field>
-    </record>
-
-
-    <record id="view_stock_available_form" model="ir.ui.view">
-        <field name="model">product.template</field>
-        <field name="inherit_id" ref="stock_available.view_stock_available_form" />
-        <field name="arch" type="xml">
-            <xpath expr="//field[@name='potential_qty']/../../.." position="attributes">
-                <attribute name="invisible">1</attribute>
+            <xpath expr="//field[@name='virtual_available']/../../.." position="after">
+                <button type="object"
+                    name="action_product_product_free_qty"
+                    attrs="{'invisible':[('type', '!=', 'product')]}"
+                    context="{'default_product_tmpl_id': id}"
+                    class="oe_stat_button" icon="fa-cubes">
+                    <div class="o_field_widget o_stat_info">
+                        <span class="o_stat_value">
+                            <field name="free_qty" widget="statinfo" nolabel="1" class="mr4"/>
+                            <field name="uom_name"/>
+                        </span>
+                        <span class="o_stat_text">Free Quantity</span>
+                    </div>
+                </button>
             </xpath>
         </field>
     </record>

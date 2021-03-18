@@ -12,19 +12,13 @@
                         available
                     </div>
                     <div t-if="inventory_availability == 'always_no_lock'">
-                        <div t-if="available_threshold > virtual_available"
-                        t-attf-class="availability_message_#{product_template} text-warning mt16">
-                            <t t-esc="virtual_available_formatted"/>
+                        <div t-attf-class="availability_message_#{product_template} text-#{available_threshold > free_qty and 'danger' or 'success'} mt16">
+                            <t t-esc="free_qty_formatted"/>
                             <t t-esc="uom_name"/>
                             available
-                            <div t-if="available_threshold > virtual_available">
-                                <t t-esc="custom_message"/>
-                            </div>
                         </div>
-                        <div t-else="" t-attf-class="availability_message_#{product_template} text-success mt16">
-                            <t t-esc="virtual_available_formatted"/>
-                            <t t-esc="uom_name"/>
-                            available
+                        <div>
+                            <t t-esc="custom_message"/>
                         </div>
                     </div>
                     <t t-if="inventory_availability == 'threshold'">
@@ -41,12 +35,12 @@
                     </t>
                 </t>
                 <div t-if="cart_qty" t-attf-class="availability_message_#{product_template} text-warning mt8">
-                    You already added <t t-if="!virtual_available">all</t>
+                    You already added <t t-if="!free_qty">all</t>
                     <t t-esc="cart_qty"/>
                     <t t-esc="uom_name"/>
                     in your cart.
                 </div>
-                <div t-if="!cart_qty and virtual_available lte 0"
+                <div t-if="!cart_qty and free_qty lte 0"
                      t-attf-class="availability_message_#{product_template} text-danger mt16">
                     <i class="fa fa-exclamation-triangle" role="img" aria-label="Warning" title="Warning"/>
                     Temporarily out of stock
