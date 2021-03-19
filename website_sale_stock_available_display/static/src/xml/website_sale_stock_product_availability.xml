@@ -12,14 +12,21 @@
                         available
                     </div>
                     <div t-if="inventory_availability == 'always_no_lock'">
-                        <div t-attf-class="availability_message_#{product_template} text-#{available_threshold > free_qty and 'danger' or 'success'} mt16">
-                            <t t-esc="free_qty_formatted"/>
-                            <t t-esc="uom_name"/>
-                            available
-                        </div>
-                        <div>
-                            <t t-esc="custom_message"/>
-                        </div>
+                        <t t-if="free_qty lte available_threshold">
+                            <div t-attf-class="availability_message_#{product_template} text-danger mt16">
+                                <t t-esc="free_qty_formatted"/>
+                                <t t-esc="uom_name"/>
+                                available
+                            </div>
+                            <div>
+                                <t t-esc="custom_message"/>
+                            </div>
+                        </t>
+                        <t t-else="">
+                            <div t-attf-class="availability_message_#{product_template} text-success mt16">
+                                In stock
+                            </div>
+                        </t>
                     </div>
                     <t t-if="inventory_availability == 'threshold'">
                         <div t-if="virtual_available lte available_threshold"
@@ -39,11 +46,6 @@
                     <t t-esc="cart_qty"/>
                     <t t-esc="uom_name"/>
                     in your cart.
-                </div>
-                <div t-if="!cart_qty and free_qty lte 0"
-                     t-attf-class="availability_message_#{product_template} text-danger mt16">
-                    <i class="fa fa-exclamation-triangle" role="img" aria-label="Warning" title="Warning"/>
-                    Temporarily out of stock
                 </div>
             </t>
             <div t-if="product_type == 'product' and inventory_availability == 'custom'"
