@@ -9,7 +9,7 @@
             <t t-set="available_threshold" t-value="line.product_id.available_threshold"/>
             <div t-if="available_threshold > free_qty" t-attf-class="availability_messages text-danger">
                 <t t-set="free_qty" t-value="free_qty if free_qty > 0.0 else 0.0"/>
-                <span><t t-esc="free_qty"/> <t t-esc="line.product_uom.name"/> in stock</span>
+                <span><t t-esc="free_qty"/> <t t-esc="line.product_uom.name"/> available</span>
             </div>
         </t>
     </template>

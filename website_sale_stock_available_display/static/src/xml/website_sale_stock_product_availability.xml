@@ -4,7 +4,7 @@
     <t t-extend="website_sale_stock.product_availability">
         <t t-jquery="t:first" t-operation="replace">
             <t t-if="product_type == 'product' and _.contains(['always', 'threshold', 'always_no_lock'], inventory_availability)">
-                <t t-if="virtual_available gt 0">
+                <t>
                     <div t-if="inventory_availability == 'always'"
                          t-attf-class="availability_message_#{product_template} text-success mt16">
                         <t t-esc="virtual_available_formatted"/>
@@ -12,7 +12,7 @@
                         available
                     </div>
                     <div t-if="inventory_availability == 'always_no_lock'">
-                        <t t-if="free_qty lte available_threshold">
+                        <t t-if="free_qty lt available_threshold">
                             <div t-attf-class="availability_message_#{product_template} text-danger mt16">
                                 <t t-esc="free_qty_formatted"/>
                                 <t t-esc="uom_name"/>
@@ -42,7 +42,7 @@
                     </t>
                 </t>
                 <div t-if="cart_qty" t-attf-class="availability_message_#{product_template} text-warning mt8">
-                    You already added <t t-if="!free_qty">all</t>
+                    You already added 
                     <t t-esc="cart_qty"/>
                     <t t-esc="uom_name"/>
                     in your cart.
