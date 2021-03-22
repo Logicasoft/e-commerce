@@ -90,7 +90,7 @@ msgstr ""
 #: code:addons/website_sale_stock_available_display/static/src/xml/website_sale_stock_product_availability.xml:0
 #, python-format
 msgid "You already added"
-msgstr "Vous avez ajouté"
+msgstr "Vous avez déjà ajouté"
 
 #. module: website_sale_stock_available_display
 #. openerp-web
