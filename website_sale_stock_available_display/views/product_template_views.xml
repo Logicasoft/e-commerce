@@ -13,7 +13,7 @@
             </field>
             <xpath expr="//field[@name='available_threshold']" position="attributes">
                 <attribute name="attrs">{'invisible':
-                    [('inventory_availability', 'not in', ['threshold', 'always_no_lock']), ('type', 'in', ['service', 'consu'])],
+                    ['|', ('inventory_availability', 'not in', ['threshold', 'always_no_lock']), ('type', 'in', ['service', 'consu'])],
                     'required':
                     [('inventory_availability', 'in', ['threshold','always_no_lock']), ('type', '=', 'product')]}</attribute>
             </xpath>
