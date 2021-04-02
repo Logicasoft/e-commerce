@@ -11,6 +11,10 @@ class ProductTemplate(models.Model):
          'Show inventory on website, allow sales if not enough stock and add a message if stock below threshold'),
     ])
 
+    @api.onchange('available_threshold')
+    def onchange_available_threshold(self):
+        if self.available_threshold <= 0:
+            self.available_threshold = 1
 
     def _get_combination_info(self, combination=False, product_id=False, add_qty=1, pricelist=False, parent_combination=False, only_template=False):
         combination_info = super(ProductTemplate, self)._get_combination_info(

@@ -27,3 +27,8 @@ class ProductProduct(models.Model):
         self.ensure_one()
         action = self.env["ir.actions.actions"]._for_xml_id('stock.stock_replenishment_product_product_action')
         return action
+
+    @api.onchange('available_threshold')
+    def onchange_available_threshold(self):
+        if self.available_threshold <= 0:
+            self.available_threshold = 1
